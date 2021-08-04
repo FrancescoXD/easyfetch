@@ -45,11 +45,11 @@ fn main() {
         .args(&["-c", "pacman -Q | wc -l"])
         .output()
         .expect("Failed to execute pacman");
-    println!("{:?}", output);
+    //println!("{:?}", output);
 
     // Print
-    println!("{}  {} minutes", "up".cyan().bold(), uptime);
-    println!("{}  {}", "sh".blue().bold(), shell);
-    println!("{} {:.1} / {:.1}", "ram".yellow().bold(), memused / 1_000_000.00, memtotal / 1_000_000.00);
-    println!("{} {}", "ker".green().bold(), kernel);
+    println!("{:>9}  {} {}", "up".cyan().bold(), uptime.to_string().bold(), "minutes".bold());
+    println!("{:>9}  {}", "sh".blue().bold(), shell.bold());
+    println!("{:>10} {:.1} / {:.1} GB", "ram".yellow().bold(), (memused / 1_000_000.00).to_string().bold(), (memtotal / 1_000_000.00).to_string().bold());
+    println!("{:>10} {}", "ker".green().bold(), kernel.bold());
 }
