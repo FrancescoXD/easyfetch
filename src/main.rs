@@ -40,9 +40,16 @@ fn main() {
     let totmemused = memtotal - memfree;
     let memused = totmemused - (buffers + cached);
 
+    // Packages - needs to be fixed
+    let output = Command::new("/bin/bash")
+        .args(&["-c", "pacman -Q | wc -l"])
+        .output()
+        .expect("Failed to execute pacman");
+    println!("{:?}", output);
+
     // Print
     println!("{}  {} minutes", "up".cyan().bold(), uptime);
     println!("{}  {}", "sh".blue().bold(), shell);
-    println!("{} {:.1}/{:.1}", "ram".yellow().bold(), memused / 1_000_000.00, memtotal / 1_000_000.00);
+    println!("{} {:.1} / {:.1}", "ram".yellow().bold(), memused / 1_000_000.00, memtotal / 1_000_000.00);
     println!("{} {}", "ker".green().bold(), kernel);
 }
