@@ -9,10 +9,10 @@ cargo run
 
 It's easy no?
 
-# Enable it globally
+# How to enable it globally
 ```
 $ cargo build --release
 $ sudo mv target/release/easyfetch /usr/local/bin
 ```
 
-And then you can start it everywhere.
+And then you can start it everywhere just writing ```easyfetch```!.
