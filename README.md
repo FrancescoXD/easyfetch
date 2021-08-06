@@ -15,4 +15,4 @@ $ cargo build --release
 $ sudo mv target/release/easyfetch /usr/local/bin
 ```
 
-And then you can start it everywhere just writing ```easyfetch```!.
+And then you can start it everywhere just typing ```easyfetch```!
