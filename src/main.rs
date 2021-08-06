@@ -14,10 +14,10 @@ fn main() {
     let shell = shell.split("/").last().unwrap();
 
     // Kernel
-    let kernel = fs::read_to_string("/proc/sys/kernel/osrelease").unwrap().split_whitespace().next().unwrap().to_owned();
+    let kernel = fs::read_to_string("/proc/sys/kernel/osrelease").expect("Unable to read /proc/sys/kernel/osrelease").split_whitespace().next().expect("Unable to get kernel version.").to_owned();
 
     // Uptime
-    let uptime = fs::read_to_string("/proc/uptime").unwrap();
+    let uptime = fs::read_to_string("/proc/uptime").expect("Unable to read /proc/uptime.");
     let mut uptime = uptime.split(" ");
 
     let uptime = match uptime.nth(0).unwrap().parse::<f32>() {
@@ -33,7 +33,7 @@ fn main() {
     }
 
     // Memory
-    let memory = fs::read_to_string("/proc/meminfo").unwrap();
+    let memory = fs::read_to_string("/proc/meminfo").expect("Unable to read /proc/meminfo.");
     let memory = memory.split_whitespace();
     let memory: Vec<&str> = memory.collect();
 
@@ -50,14 +50,16 @@ fn main() {
         .args(&["-c", "pacman -Q | wc -l"])
         .output()
         .expect("Failed to execute pacman");
-    let packages = String::from_utf8(output.stdout).unwrap().split_whitespace().next().unwrap().to_owned();
+
+    let packages = String::from_utf8(output.stdout).expect("Unable to get packages.").split_whitespace().next().expect("Unable to get packages count.").to_owned();
 
     // Disk
     let output = Command::new("/bin/bash")
         .args(&["-c", "df -h /"])
         .output()
         .expect("Failed to execute pacman");
-    let disk = String::from_utf8(output.stdout).unwrap();
+
+    let disk = String::from_utf8(output.stdout).expect("Unable to get disk output.");
     let disk: Vec<&str> = disk.split_whitespace().collect();
     let diskused = disk.get(10).expect("Unable to get disk used.");
     let disktotal = disk.get(9).expect("Unable to get disk total.");
