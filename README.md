@@ -1,6 +1,8 @@
 # easyfetch
 A very simple and bad coded rust linux fetcher. Works only on ArchLinux.
 
+![screenshot](screenshots/screen1.png)
+
 # How to compile
 This is a Rust project, so you need the rust compiler. When downloaded do:
 ```
