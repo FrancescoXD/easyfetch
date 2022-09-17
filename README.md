@@ -1,5 +1,5 @@
 # easyfetch
-A very simple and bad coded rust linux fetcher. Works only on ArchLinux.
+A very simple and bad coded rust linux fetcher.
 
 ![screenshot](screenshots/screen1.png)
 
@@ -9,7 +9,7 @@ This is a Rust project, so you need the rust compiler. When downloaded do:
 cargo run
 ```
 
-It's easy no?
+It's easy, isn't it?
 
 # How to enable it globally
 ```
